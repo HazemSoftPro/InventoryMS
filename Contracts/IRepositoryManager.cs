@@ -11,6 +11,13 @@
         IDeviceAssignmentRepository DeviceAssignment { get; }
         IMaintenanceScheduleRepository MaintenanceSchedule { get; }
         IServiceHistoryRepository ServiceHistory { get; }
-        void SaveAsync();
+        IInventoryTransactionRepository InventoryTransaction { get; }
+        IStockLevelRepository StockLevel { get; }
+        IWarehouseRepository Warehouse { get; }
+        IPurchaseOrderRepository PurchaseOrder { get; }
+        IInventoryAlertRepository InventoryAlert { get; }
+        IAuditLogRepository AuditLog { get; }
+        IInventoryReportRepository InventoryReport { get; }
+        Task SaveAsync();
     }
 }

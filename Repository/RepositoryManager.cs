@@ -14,7 +14,13 @@ namespace Repository
         private IDeviceAssignmentRepository _deviceAssignment;
         private IMaintenanceScheduleRepository _maintenanceSchedule;
         private IServiceHistoryRepository _serviceHistory;
-
+        private IInventoryTransactionRepository _inventoryTransaction;
+        private IStockLevelRepository _stockLevel;
+        private IWarehouseRepository _warehouse;
+        private IPurchaseOrderRepository _purchaseOrder;
+        private IInventoryAlertRepository _inventoryAlert;
+        private IAuditLogRepository _auditLog;
+        private IInventoryReportRepository _inventoryReport;
 
         public RepositoryManager(RepositoryContext repositoryContext)
         {
@@ -99,7 +105,6 @@ namespace Repository
             }
         }
 
-
         public IDeviceAssignmentRepository DeviceAssignment
         {
             get
@@ -139,7 +144,97 @@ namespace Repository
             }
         }
 
+        public IInventoryTransactionRepository InventoryTransaction
+        {
+            get
+            {
+                if (_inventoryTransaction == null)
+                {
+                    _inventoryTransaction = new InventoryTransactionRepository(_repoContext);
+                }
 
-        public void SaveAsync() => _repoContext.SaveChanges();
+                return _inventoryTransaction;
+            }
+        }
+
+        public IStockLevelRepository StockLevel
+        {
+            get
+            {
+                if (_stockLevel == null)
+                {
+                    _stockLevel = new StockLevelRepository(_repoContext);
+                }
+
+                return _stockLevel;
+            }
+        }
+
+        public IWarehouseRepository Warehouse
+        {
+            get
+            {
+                if (_warehouse == null)
+                {
+                    _warehouse = new WarehouseRepository(_repoContext);
+                }
+
+                return _warehouse;
+            }
+        }
+
+        public IPurchaseOrderRepository PurchaseOrder
+        {
+            get
+            {
+                if (_purchaseOrder == null)
+                {
+                    _purchaseOrder = new PurchaseOrderRepository(_repoContext);
+                }
+
+                return _purchaseOrder;
+            }
+        }
+
+        public IInventoryAlertRepository InventoryAlert
+        {
+            get
+            {
+                if (_inventoryAlert == null)
+                {
+                    _inventoryAlert = new InventoryAlertRepository(_repoContext);
+                }
+
+                return _inventoryAlert;
+            }
+        }
+
+        public IAuditLogRepository AuditLog
+        {
+            get
+            {
+                if (_auditLog == null)
+                {
+                    _auditLog = new AuditLogRepository(_repoContext);
+                }
+
+                return _auditLog;
+            }
+        }
+
+        public IInventoryReportRepository InventoryReport
+        {
+            get
+            {
+                if (_inventoryReport == null)
+                {
+                    _inventoryReport = new InventoryReportRepository(_repoContext);
+                }
+
+                return _inventoryReport;
+            }
+        }
+
+        public async Task SaveAsync() => await _repoContext.SaveChangesAsync();
     }
 }
